@@ -9,25 +9,15 @@ document.getElementById('expand').innerHTML = `<h2>Enter Project Name</h2>
     <button onclick="searchcodename()">Search</button>`;
 }
 function runcode(x,y,z,konghe){
+
   var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
   if(justchecking == x || justchecking == y){
     var button = document.createElement("button");
     button.innerHTML = "Run Code";
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
+    var runcode = document.getElementById("runcode");
+    runcode.appendChild(button);
     button.addEventListener ("click", function() {
-     window.open('https://www.onlinegdb.com/online_'+z+'_compiler', '_blank')});
-  }
-}
-function runcodejs(x,y,konghe){
-  var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
-  if(justchecking == x || justchecking == y){
-    var button = document.createElement("button");
-    button.innerHTML = "Run Code";
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
-    button.addEventListener ("click", function() {
-     window.open('https://jsconsole.com/', '_blank')});
+     window.open('https://paiza.io/en/projects/new?language='+z, '_blank')});
   }
 }
 function expandcode(){
@@ -78,13 +68,14 @@ function submit(){
   })
   }
   function startOffer(){
-  var url = new URL(location.href);
-  if(url.includes("https://aops-code-sharer.github.io/main/")){
+  var x = new URL(location.href).toString();
+  if(x.includes("https://main-1.cyclopsdude.repl.co/")){
   }else{
     document.write("This is a copy of my website. Here's the link: https://aops-code-sharer.github.io/main/index.html");
   }
   }
   function realsearch(){
+    startOffer()
     var url = new URL(location.href);
     var id = url.searchParams.get("id");
     while(id.includes(" ")){
@@ -102,14 +93,27 @@ function submit(){
         document.getElementById("ratings").innerHTML = "Likes: "+snapshot.data().likes + " Dislikes: "+snapshot.data().dislikes;
         document.getElementById("language").innerHTML = "Written In: "+snapshot.data().language;
         document.getElementById("code").innerText = snapshot.data().code;
-        runcodejs('js','javascript',snapshot)
-        runcode('python','py','python',snapshot)
+        var i = (snapshot.data().comments.length)-1;
+        while(i >= 0){
+          var pre = document.createElement('pre');
+          pre.innerText = snapshot.data().comments[i]
+          pre.style['fontSize'] = "17px";
+          var hr = document.createElement('hr');
+          var br = document.createElement('br');
+          var commentsection =  document.getElementById('commentsection');
+          
+          commentsection.appendChild(pre);
+          commentsection.appendChild(hr);
+          commentsection.appendChild(br);
+          i -= 1
+        }
+        runcode('js','javascript','javascript',snapshot)
+        runcode('python','py','python3',snapshot)
         runcode('c','c','c',snapshot)
         runcode('c#','c#','c#',snapshot)
         runcode('c++','c++','c++',snapshot)
         runcode('ruby','ruby','ruby',snapshot)
         runcode('swift','swift','swift',snapshot)
-        runcode('java','java','java',snapshot)
         if(localStorage.getItem("liked"+snapshot.id)){
           document.getElementById('likes').style['background-color'] = "#cceeff"
         }
@@ -120,6 +124,7 @@ function submit(){
     })
   }
   function realsearchcodename(){
+    startOffer()
     var url = new URL(location.href);
     var id = url.searchParams.get("id");
     db.collection('projects')
@@ -204,6 +209,7 @@ function submit(){
     })
   }
   function ratings(){
+    startOffer()
     db.collection('projects')
     .get()
     .then(function (snapshot){
@@ -242,4 +248,63 @@ function submit(){
   function normaltextarea(){
     document.getElementById('changefont').innerHTML = "<h4 id=\"changefont\">Feeling Old School? Try the <em style=\"cursor:pointer;\" onclick=\"matrix()\" >Matrix</em> Theme!</h4>"
     document.getElementById('code').className = "";
+  }
+  function gallery(){
+    startOffer()
+    db.collection('projects')
+    .get()
+    .then(function (snapshot){
+      var i = 0;
+      while(i < snapshot.docs.length){
+        var div = document.createElement('div');
+        div.style['cursor'] = 'pointer';
+        div.style['border'] = 'solid black';
+        div.style['borderWidth'] = '5px';
+        div.style['borderRadius'] = '10px';
+        div.style['maxWidth'] = '50%';
+        div.style['padding'] = '10px';
+        div.setAttribute("onclick","goSomewhere(\"showworkcodename.html?id="+snapshot.docs[i].data().codename+"\")");
+        var title = document.createElement('h2');
+        title.textContent = snapshot.docs[i].data().codename;
+        div.appendChild(title);
+        var author = document.createElement('h3');
+        author.textContent = "Written By: "+snapshot.docs[i].data().accountname;
+        div.appendChild(author);
+        var ratings = document.createElement('h4');
+        ratings.textContent = "Likes: "+snapshot.docs[i].data().likes+" Dislikes: "+snapshot.docs[i].data().dislikes;
+        div.appendChild(ratings);
+        var parentdiv = document.getElementById('displayprojects');
+        var br = document.createElement('br');
+        parentdiv.appendChild(div);
+        parentdiv.appendChild(br);
+        i++
+      }
+    })
+  }
+  function expandcommenttextarea(){
+    var expandcode = `<textarea class="commentwriting" id="commenttextarea"></textarea>
+    <br><br>
+    <button onclick="publishcomment()">Publish Comment</button>`
+    document.getElementById('expandingcomment').innerHTML = expandcode;
+  }
+  function publishcomment(){
+    var url = new URL(location.href);
+    var id = url.searchParams.get("id");
+    db.collection('projects')
+    .doc(id)
+    .get()
+    .then(function (snapshot){
+      var array = snapshot.data().comments;
+      console.log(array)
+      var addtoarray = document.getElementById('commenttextarea').value
+      array.push(addtoarray)
+      db.collection('projects')
+      .doc(id)
+      .update({
+        comments: array
+      })
+      .then(function (snapshot){
+        document.getElementById('expandingcomment') .innerHTML = "<h3>Submitted!</h3>"
+      })
+    })
   }
