@@ -102,7 +102,7 @@ function submit(){
         document.getElementById("language").innerHTML = "Written In: "+snapshot.data().language;
         document.getElementById("code").innerText = snapshot.data().code;
         runcodejs('js','javascript',snapshot)
-        runcode('python','py','python3',snapshot)
+        runcode('python','py','python',snapshot)
         runcode('c','c','c',snapshot)
         runcode('c#','c#','c#',snapshot)
         runcode('c++','c++','c++',snapshot)
