@@ -96,6 +96,7 @@ function submit(){
         var i = (snapshot.data().comments.length)-1;
         while(i >= 0){
           var pre = document.createElement('pre');
+          pre.className = "precomment"
           pre.innerText = snapshot.data().comments[i]
           pre.style['fontSize'] = "17px";
           var hr = document.createElement('hr');
