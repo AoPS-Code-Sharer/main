@@ -9,7 +9,6 @@ document.getElementById('expand').innerHTML = `<h2>Enter Project Name</h2>
     <button onclick="searchcodename()">Search</button>`;
 }
 function runcode(x,y,z,konghe){
-
   var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
   if(justchecking == x || justchecking == y){
     var button = document.createElement("button");
@@ -18,6 +17,17 @@ function runcode(x,y,z,konghe){
     body.appendChild(button);
     button.addEventListener ("click", function() {
      window.open('https://www.onlinegdb.com/online_'+z+'_compiler', '_blank')});
+  }
+}
+function runcodejs(x,y,konghe){
+  var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
+  if(justchecking == x || justchecking == y){
+    var button = document.createElement("button");
+    button.innerHTML = "Run Code";
+    var body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
+    button.addEventListener ("click", function() {
+     window.open('https://jsconsole.com/', '_blank')});
   }
 }
 function expandcode(){
@@ -91,7 +101,7 @@ function submit(){
         document.getElementById("ratings").innerHTML = "Likes: "+snapshot.data().likes + " Dislikes: "+snapshot.data().dislikes;
         document.getElementById("language").innerHTML = "Written In: "+snapshot.data().language;
         document.getElementById("code").innerText = snapshot.data().code;
-        runcode('js','javascript','javascript',snapshot)
+        runcodejs('js','javascript',snapshot)
         runcode('python','py','python3',snapshot)
         runcode('c','c','c',snapshot)
         runcode('c#','c#','c#',snapshot)
