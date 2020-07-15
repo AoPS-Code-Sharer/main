@@ -283,7 +283,7 @@ function submit(){
     })
   }
   function expandcommenttextarea(){
-    var expandcode = `<textarea class="commentwriting" id="commenttextarea"></textarea>
+    var expandcode = `<textarea class="commentwriting" maxlength="300" id="commenttextarea"></textarea>
     <br><br>
     <button onclick="publishcomment()">Publish Comment</button>`
     document.getElementById('expandingcomment').innerHTML = expandcode;
