@@ -17,7 +17,7 @@ function runcode(x,y,z,konghe){
     var body = document.getElementsByTagName("body")[0];
     body.appendChild(button);
     button.addEventListener ("click", function() {
-     window.open('https://paiza.io/en/projects/new?language='+z, '_blank')});
+     window.open('https://www.onlinegdb.com/online_'+z+'_compiler', '_blank')});
   }
 }
 function expandcode(){
