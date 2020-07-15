@@ -29,6 +29,10 @@ pre{
   font-family: 'Fira Code';
   font-size:15px;
 }
+.precomment{
+  font-family: 'Montserrat';
+  font-size:15px;
+}
 textarea{
 	width: 600px;
 	height: 120px;
