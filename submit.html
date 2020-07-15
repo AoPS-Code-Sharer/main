@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>AoPS Share Code</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@364&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyAQIe6XxFlndgsLUtKl4dbgOpyAMSXu6w4",
+    authDomain: "aops-share-code.firebaseapp.com",
+    databaseURL: "https://aops-share-code.firebaseio.com",
+    projectId: "aops-share-code",
+    storageBucket: "aops-share-code.appspot.com",
+    messagingSenderId: "804273043373",
+    appId: "1:804273043373:web:27d7a3e57f726087ac9324"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+    <script src="script.js"></script>
+    <center>
+    <h1 onclick="goSomewhere('/main/index.html')">AoPS place to share code</h1>
+    <p>Made by theArgonauts</p>
+    </center>
+    <h2>What is the name of this code</h2>
+        <input type="text" id="codename" placeholder="(eg. Pythagorean Triples Finder)">
+    <h2>What is your AoPS account name?</h2>
+    <input type="text" id="accountname" placeholder="theArgonauts">
+    <h2>What is the coding language?</h2>
+    <input type="text" id="language" placeholder="JS">
+    <h2>Paste in the code</h2>
+    <h4 id="changefont">Feeling Old School? Try the <em style="cursor:pointer;" onclick="matrix()" >Matrix</em> Theme!</h4>
+    <textarea placeholder="paste or write code in here" id="code"></textarea>
+    <br>
+    <br>
+    <button onclick="submit()">Submit</button>
+    <p id="shower" style="color:red;"></p>
+    </textarea>
+  </body>
+</html>

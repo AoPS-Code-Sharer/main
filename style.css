@@ -1,0 +1,115 @@
+body{
+  padding:15px;
+}
+h1{
+  font-family: 'Montserrat';
+  font-size:40px;
+  cursor: pointer;
+}
+h2{
+  font-family: 'Montserrat';
+}
+h3{
+  font-family: 'Montserrat';
+}
+a{
+  text-decoration: none;
+  color:black;
+  font-family: 'Montserrat';
+  font-size: 24px;
+}
+h4{
+  font-family: 'Montserrat';
+}
+p{
+  font-family: 'Montserrat';
+  font-size:15px;
+}
+pre{
+  font-family: 'Fira Code';
+  font-size:15px;
+}
+textarea{
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: 'Fira Code';
+	background-position: bottom right;
+	background-repeat: no-repeat;
+  transition: 0.5s;
+}
+textarea:focus{
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: 'Fira Code';
+	background-color: #d6d6d6;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+  transition: 0.5s;
+}
+.matrix{
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+  background-color: #d6d6d6;
+	padding: 5px;
+	font-family: 'IBM Plex Mono';
+	background-position: bottom right;
+	background-repeat: no-repeat;
+  transition: 0.5s;
+}
+.matrix:focus{
+	width: 600px;
+	height: 120px;
+	border: 3px solid #00FF41;
+	padding: 5px;
+	font-family: 'IBM Plex Mono';
+	background-color: black;
+  color: #00FF41;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+  transition: 0.5s;
+}
+.matrix:focus::placeholder{
+	color: #00FF41;
+}
+button{
+  background-color: #d6d6d6;
+  font-family: 'Montserrat';
+  padding:10px;
+  border-width: 0px;
+  font-size:20px;
+  transition: 0.7s;
+}
+button:hover{
+  background-color: #d6d6d6;
+  font-family: 'Montserrat';
+  padding:13px;
+  border-width: 0px;
+  font-size:20px;
+  transition:0.7s;
+}
+input[type=text]{
+  font-family: 'Montserrat';
+  font-size:15px;
+  padding:5px;
+}
+.ratingbuttons{
+  font-family: 'Montserrat';
+  background-color:white;
+  padding:10px;
+  border-width: 0px;
+  font-size:20px;
+  transition: 0.7s;
+}
+.ratingbuttons:hover{
+  font-family: 'Montserrat';
+  background-color:white;
+  padding:5px;
+  border-width: 0px;
+  font-size:25px;
+  transition: 0.7s;
+}
