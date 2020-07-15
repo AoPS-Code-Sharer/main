@@ -60,7 +60,8 @@ function submit(){
     language: language,
     code: code,
     likes: 0,
-    dislikes: 0
+    dislikes: 0,
+    comments: []
   }
   db.collection('projects')
   .add(everything)
