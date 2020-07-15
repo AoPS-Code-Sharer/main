@@ -50,6 +50,27 @@ textarea:focus{
 	background-repeat: no-repeat;
   transition: 0.5s;
 }
+.commentwriting{
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: 'Montserrat';
+	background-position: bottom right;
+	background-repeat: no-repeat;
+  transition: 0.5s;
+}
+.commentwriting:focus{
+	width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: 'Montserrat';
+	background-color: #d6d6d6;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+  transition: 0.5s;
+}
 .matrix{
 	width: 600px;
 	height: 120px;
