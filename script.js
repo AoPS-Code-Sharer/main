@@ -98,6 +98,7 @@ function submit(){
         runcode('c++','c++','c++',snapshot)
         runcode('ruby','ruby','ruby',snapshot)
         runcode('swift','swift','swift',snapshot)
+        runcode('java','java','java',snapshot)
         if(localStorage.getItem("liked"+snapshot.id)){
           document.getElementById('likes').style['background-color'] = "#cceeff"
         }
