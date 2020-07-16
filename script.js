@@ -9,7 +9,6 @@ document.getElementById('expand').innerHTML = `<h2>Enter Project Name</h2>
     <button onclick="searchcodename()">Search</button>`;
 }
 function runcode(x,y,z,konghe){
-
   var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
   if(justchecking == x || justchecking == y){
     var button = document.createElement("button");
@@ -17,7 +16,18 @@ function runcode(x,y,z,konghe){
     var runcode = document.getElementById("runcode");
     runcode.appendChild(button);
     button.addEventListener ("click", function() {
-     window.open('https://paiza.io/en/projects/new?language='+z, '_blank')});
+     window.open('https://www.onlinegdb.com/online_'+z+'_compiler', '_blank')});
+  }
+}
+function runcodejs(x,y,konghe){
+  var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
+  if(justchecking == x || justchecking == y){
+    var button = document.createElement("button");
+    button.innerHTML = "Run Code";
+    var runcode = document.getElementById("runcode");
+    runcode.appendChild(button);
+    button.addEventListener ("click", function() {
+     window.open('https://jsconsole.com/', '_blank')});
   }
 }
 function expandcode(){
@@ -108,8 +118,8 @@ function submit(){
           commentsection.appendChild(br);
           i -= 1
         }
-        runcode('js','javascript','javascript',snapshot)
-        runcode('python','py','python3',snapshot)
+        runcodejs('js','javascript',snapshot)
+        runcode('python','py','python',snapshot)
         runcode('c','c','c',snapshot)
         runcode('c#','c#','c#',snapshot)
         runcode('c++','c++','c++',snapshot)
