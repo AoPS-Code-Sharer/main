@@ -81,7 +81,7 @@ function submit(){
   }
   function startOffer(){
   var x = new URL(location.href).toString();
-  if(x.includes("https://main-1.cyclopsdude.repl.co/")){
+  if(x.includes("https://aops-code-sharer.github.io/main/")){
   }else{
     document.write("This is a copy of my website. Here's the link: https://aops-code-sharer.github.io/main/index.html");
   }
