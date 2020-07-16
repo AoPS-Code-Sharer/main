@@ -9,6 +9,7 @@ document.getElementById('expand').innerHTML = `<h2>Enter Project Name</h2>
     <button onclick="searchcodename()">Search</button>`;
 }
 function runcode(x,y,z,konghe){
+
   var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
   if(justchecking == x || justchecking == y){
     var button = document.createElement("button");
@@ -19,7 +20,8 @@ function runcode(x,y,z,konghe){
      window.open('https://www.onlinegdb.com/online_'+z+'_compiler', '_blank')});
   }
 }
-function runcodejs(x,y,konghe){
+function runcodejs(x,y,z,konghe){
+
   var justchecking = konghe.data().language.toLowerCase().replace(/\s+/g, '');
   if(justchecking == x || justchecking == y){
     var button = document.createElement("button");
@@ -79,7 +81,7 @@ function submit(){
   }
   function startOffer(){
   var x = new URL(location.href).toString();
-  if(x.includes("https://aops-code-sharer.github.io/main/")){
+  if(x.includes("https://main-1.cyclopsdude.repl.co/")){
   }else{
     document.write("This is a copy of my website. Here's the link: https://aops-code-sharer.github.io/main/index.html");
   }
@@ -98,27 +100,32 @@ function submit(){
       if(snapshot.empty){
         document.getElementById("codename").innerHTML = "This Project Doesn't exist";
       }else{
-        document.getElementById("codename").innerHTML = snapshot.data().codename;
-        document.getElementById("accountname").innerHTML = "Author: "+snapshot.data().accountname;
-        document.getElementById("ratings").innerHTML = "Likes: "+snapshot.data().likes + " Dislikes: "+snapshot.data().dislikes;
-        document.getElementById("language").innerHTML = "Written In: "+snapshot.data().language;
+        var codename = snapshot.data().codename;
+        document.getElementById("codename").innerText = codename;
+        document.getElementById("accountname").innerText = "Author: "+snapshot.data().accountname;
+        document.getElementById("ratings").innerText = "Likes: "+snapshot.data().likes + " Dislikes: "+snapshot.data().dislikes;
+        document.getElementById("language").innerText = "Written In: "+snapshot.data().language;
         document.getElementById("code").innerText = snapshot.data().code;
         var i = (snapshot.data().comments.length)-1;
         while(i >= 0){
           var pre = document.createElement('pre');
-          pre.className = "precomment"
           pre.innerText = snapshot.data().comments[i]
           pre.style['fontSize'] = "17px";
           var hr = document.createElement('hr');
           var br = document.createElement('br');
           var commentsection =  document.getElementById('commentsection');
-          
+          var button = document.createElement('button');
+          button.innerText = "Report Comment";
+          var remove = snapshot.data().comments[i];
+          remove = remove.replaceAll("\"", "\\\"")
+          button.setAttribute("onclick","reportcomment(`"+remove+"`,"+i+")");
           commentsection.appendChild(pre);
+          commentsection.appendChild(button);
           commentsection.appendChild(hr);
           commentsection.appendChild(br);
           i -= 1
         }
-        runcodejs('js','javascript',snapshot)
+        runcode('js','javascript','javascript',snapshot)
         runcode('python','py','python',snapshot)
         runcode('c','c','c',snapshot)
         runcode('c#','c#','c#',snapshot)
@@ -293,7 +300,7 @@ function submit(){
     })
   }
   function expandcommenttextarea(){
-    var expandcode = `<textarea class="commentwriting" maxlength="300" id="commenttextarea"></textarea>
+    var expandcode = `<textarea class="commentwriting" id="commenttextarea"></textarea>
     <br><br>
     <button onclick="publishcomment()">Publish Comment</button>`
     document.getElementById('expandingcomment').innerHTML = expandcode;
@@ -319,3 +326,23 @@ function submit(){
       })
     })
   }
+  function reportcomment(x,z){
+    var url = new URL(location.href);
+    var id = url.searchParams.get("id");
+    db.collection('projects')
+    .doc(id)
+    .get()
+    .then(function (snapshot){
+      Email.send({
+      SecureToken : "068f1e9c-38fa-4821-ad7c-2a5b4d6ef3b4",
+      To : 'kenjiw360@gmail.com',
+      From : "kenji.wang@outlook.com",
+      CC : "kenjiw360@gmail.com",
+      Subject : "Aops Code Sharer Comment Report",
+      Body : "<html><center><h1 style=\"font-family:sans-serif;\">There is a Report</h1><h3 style=\"font-family:sans-serif;\">Project Name: "+id+"</h3><h3 style=\"font-family:sans-serif;\">Comment Position: "+z+"</h3><h3 style=\"font-family:sans-serif;\">Message:</h3><pre style=\"font-family:sans-serif;\">"+x+"</pre></center></html>"
+    }).then(
+      alert('sent report')
+    );
+    })
+  }
+    
