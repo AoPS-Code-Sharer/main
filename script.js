@@ -81,9 +81,9 @@ function submit(){
   }
   function startOffer(){
   var x = new URL(location.href).toString();
-  if(x.includes("https://aops-code-sharer.github.io/main/")){
+  if(x.includes("https://place-to-share-mathrelated-code.github.io/main/")){
   }else{
-    document.write("This is a copy of my website. Here's the link: https://aops-code-sharer.github.io/main/index.html");
+    document.write("This is a copy of my website. Here's the link: https://place-to-share-mathrelated-code.github.io/main/");
   }
   }
   function realsearch(){
